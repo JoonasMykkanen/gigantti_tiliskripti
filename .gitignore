@@ -1,0 +1,5 @@
+/test/test.xlsx
+database.db
+.env
+.DS_Store
+/app/.DS_Store

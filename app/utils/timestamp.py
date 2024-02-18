@@ -1,24 +1,33 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    importKeys.py                                      :+:      :+:    :+:    #
+#    timestamp.py                                       :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: jmykkane <jmykkane@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/02/15 08:42:37 by jmykkane          #+#    #+#              #
-#    Updated: 2024/02/15 09:02:43 by jmykkane         ###   ########.fr        #
+#    Created: 2024/02/16 07:37:50 by jmykkane          #+#    #+#              #
+#    Updated: 2024/02/18 12:51:12 by jmykkane         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-# Will take a xmls file as input and parse it to the database
-# File should contain product keys for the f-secure software
-# Validation is minimal, as the file is assumed to be correct
-# since this is an company internal tool
-
 # Library imports
-from fastapi import APIRouter
+from datetime import datetime
+import pytz
 
 # Custom imports
+from .constants import CURRENT_TIMEZONE
 
-router = APIRouter()
+def get_timestamp():
+	"""
+	Will get current time stamp in GMT+2 (Helsinki)
 
+	Parameters:
+	None
+
+	Returns:
+	datetime: Aware datetime object
+	"""
+	timezone = pytz.timezone(CURRENT_TIMEZONE)
+	time = datetime.now(timezone)
+
+	return time
