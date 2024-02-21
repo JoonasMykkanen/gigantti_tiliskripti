@@ -6,7 +6,7 @@
 #    By: jmykkane <jmykkane@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/15 07:49:07 by jmykkane          #+#    #+#              #
-#    Updated: 2024/02/16 07:59:13 by jmykkane         ###   ########.fr        #
+#    Updated: 2024/02/21 18:20:28 by jmykkane         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,6 +14,8 @@
 from fastapi import FastAPI
 
 # Custom imports
+from app.routes import create_account
+from app.routes import import_keys
 from app.routes import index
 
 def create_app():
@@ -32,5 +34,7 @@ def create_app():
 
 	# Specifying individual endpoints
 	app.include_router(index.router)
+	app.include_router(create_account.router)
+	app.include_router(import_keys.router)
 
 	return app

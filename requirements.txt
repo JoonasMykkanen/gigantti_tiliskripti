@@ -6,3 +6,7 @@ pytz
 datetime
 pytest
 openpyxl
+playwright
+pytest-asyncio
+python-multipart
+asyncio
