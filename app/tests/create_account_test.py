@@ -11,7 +11,7 @@ async def test_create_account():
     payload = {
         "first_name": "John",
         "last_name": "Doe",
-        "email": "testitesterson@gmail.com",
+        "email": "tester123987@gmail.com",
         "receipt": "1234567890"
     }
 

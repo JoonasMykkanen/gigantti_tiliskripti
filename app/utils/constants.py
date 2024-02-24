@@ -6,7 +6,7 @@
 #    By: jmykkane <jmykkane@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/15 07:56:40 by jmykkane          #+#    #+#              #
-#    Updated: 2024/02/21 13:41:07 by jmykkane         ###   ########.fr        #
+#    Updated: 2024/02/24 14:07:34 by jmykkane         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,5 +36,7 @@ MAGENTA = "\033[95m"
 CYAN = "\033[96m"
 RESET = "\033[0m"
 
-# /create_account
+# /services/create_account
+POST = "POST"
+RESPONSE_URL = "https://accounts-emea.f-secure.com/OneID/portal/ui/register"
 REGISTER_URL = "https://my.f-secure.com/register/gigantti/"

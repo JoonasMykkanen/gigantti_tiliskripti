@@ -6,12 +6,9 @@
 #    By: jmykkane <jmykkane@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/16 08:03:13 by jmykkane          #+#    #+#              #
-#    Updated: 2024/02/16 08:41:07 by jmykkane         ###   ########.fr        #
+#    Updated: 2024/02/24 22:44:49 by jmykkane         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-
-# Library imports
-import datetime
 
 # Custom imports
 from .timestamp import get_timestamp
@@ -46,12 +43,12 @@ async def ft_printf(msg, level):
 
 	Parameters:
 	msg: (str): text to print out
-	level: (int): Logging level. Possible values:
-		- DEBUG		(1): Detailed information 
-		- INFO		(2): Normal prints, things are ok
-		- WARNING	(3): 400 exceptions caught
-		- ERROR		(4): 500 exceptions caught
-		- CRITICAL	(5): if malloc fails..? :D
+	level: (int): Logging level. Possible values:\n
+		- DEBUG		(1): Detailed information\n
+		- INFO		(2): Normal prints, things are ok\n
+		- WARNING	(3): 400 exceptions caught\n
+		- ERROR		(4): 500 exceptions caught\n
+		- CRITICAL	(5): if malloc fails..? :D\n
 
 	Returns:
 	None
@@ -59,4 +56,4 @@ async def ft_printf(msg, level):
 	color = get_color(level)
 	stamp = get_timestamp().strftime("%Y-%m-%d %H:%M:%S")
 
-	print({color} + f"{stamp} - {msg}" + {RESET})
+	print(color + f"{stamp} - {msg}" + RESET)

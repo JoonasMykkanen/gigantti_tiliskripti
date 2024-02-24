@@ -6,7 +6,7 @@
 #    By: jmykkane <jmykkane@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/16 07:54:05 by jmykkane          #+#    #+#              #
-#    Updated: 2024/02/21 17:47:04 by jmykkane         ###   ########.fr        #
+#    Updated: 2024/02/24 22:53:16 by jmykkane         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,13 +14,28 @@
 from peewee import *
 
 # Custom imports
+from ..utils.logger import ft_printf
+from ..utils.constants import *
+from ..utils.errors import *
 from ..db import *
 
 # ------------ PRODUCT KEY FUNCTIONS -------------- #
 
 # TODO: not urgent
 def delete_key(key):
-	pass
+	"""
+
+	Parameters:
+	key (Keys instance): entry of keys table
+
+	Returns:
+	None
+	"""
+	try:
+		key.delete_instance()
+	except Exception as e:
+		raise KeyDeleteError(f"Could not delete key from db: {e}")
+
 
 def save_keys(keys):
 	"""
@@ -29,14 +44,32 @@ def save_keys(keys):
 	Parameters:
 	keys (list): List that contains product_keys (str)
 
-	Returns: None but Raises error if occured
+	Returns:
+	None
 	"""
-	for key in keys:
-		Keys.create(value=key)
+	try:
+		for key in keys:
+			Keys.create(value=key)
+	except Exception as e:
+		raise KeySaveError(f"Could not save keys in db: {e}")
+
 
 # TODO: not urgent
-def get_key_count():
+def get_key_count(entry):
+	"""
+	Deletes given instance
+
+	Parameter:
+	entry (Keys object) entry from database Keys table
+
+	Returns:
+	None
+	"""
 	pass
+	# try:
+	# 	entry.delete_instance()
+	# except Exception as e:
+	# 	raise KeyGetError("")
 
 
 def get_product_key():
@@ -46,12 +79,14 @@ def get_product_key():
 	Parameters:
 	None
 
-	Returns: Keys: instance of Keys model
+	Returns:
+	Keys: instance of Keys model
 	"""
 	try:
 		entry = Keys.get()
 		return entry
-	
 	except Keys.DoesNotExist:
-		raise ValueError("No keys found in database.")
+		raise NoKeyError(f"No keys found in database: {e}")
+	except Exception as e:
+		raise RuntimeError(f"/services/database.py/get_product_key(): {e}")
 	
