@@ -6,7 +6,7 @@
 #    By: jmykkane <jmykkane@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/25 12:28:38 by jmykkane          #+#    #+#              #
-#    Updated: 2024/02/25 12:32:56 by jmykkane         ###   ########.fr        #
+#    Updated: 2024/02/25 16:37:01 by jmykkane         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,9 @@ from .utils.constants import INFO
 
 async def logger_middleware(request: Request, call_next):
 	"""
-	Middleware: Will take in each request and print essential information out
+	Middleware: Will take in each request & response and print essential information out
 	"""
-	ft_printf(f"{request.method} {request.url.path}", INFO)
+	await ft_printf(f"{request.method} {request.url.path}", INFO)
 	response = await call_next(request)
+	
+	return response

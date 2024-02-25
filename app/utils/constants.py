@@ -6,7 +6,7 @@
 #    By: jmykkane <jmykkane@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/15 07:56:40 by jmykkane          #+#    #+#              #
-#    Updated: 2024/02/25 11:19:06 by jmykkane         ###   ########.fr        #
+#    Updated: 2024/02/25 16:30:36 by jmykkane         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,4 +41,9 @@ REGISTER_API = "https://accounts-emea.f-secure.com/OneID/portal/ui/register"
 AUTH_API = "https://api.my.f-secure.com/auth/check-oneid/"
 REGISTER_URL = "https://my.f-secure.com/register/gigantti/"
 EMAIL_USED = "This email address is already in use."
+
+
+# GENERAL
+FRONTEND = "http://localhost:9898"
 POST = "POST"
+GET = "GET"

@@ -10,3 +10,4 @@ playwright
 pytest-asyncio
 python-multipart
 asyncio
+cors
