@@ -6,7 +6,7 @@
 #    By: jmykkane <jmykkane@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/15 08:42:37 by jmykkane          #+#    #+#              #
-#    Updated: 2024/02/24 15:13:17 by jmykkane         ###   ########.fr        #
+#    Updated: 2024/02/25 10:06:56 by jmykkane         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,12 +21,12 @@ from peewee import IntegrityError
 from fastapi import UploadFile
 from fastapi import APIRouter
 
-
 # Custom imports
 from ..services.file_parser import parse_file
 from ..services.database import save_keys
 from ..utils.logger import ft_printf
 from ..utils.constants import *
+from ..utils.errors import *
 
 router = APIRouter()
 
@@ -46,18 +46,18 @@ async def upload_file(file: UploadFile):
 		data = await parse_file(content)
 		save_keys(data)
 	
-	except IntegrityError:
-		await ft_printf("Key already existed in database, abort!", WARNING)
-		raise HTTPException(status_code=400, detail="A key in the list already exists in the database.")
-	except IndexError as e:
-		await ft_printf(f"Invalid file: {e}", WARNING)
-		raise HTTPException(status_code=400, detail=f"Invalid file: {e}")
-	except ValueError as e:
-		await ft_printf(f"Invalid file: {e}", WARNING)
-		raise HTTPException(status_code=400, detail=f"Invalid file: {e}")
-	except KeyError as e:
-		await ft_printf(f"Invalid file: {e}", WARNING)
-		raise HTTPException(status_code=400, detail=f"Error with file contents: {e}")
-	except Exception as e:
-		await ft_printf(f"Invalid file: {e}", ERROR)
-		raise HTTPException(status_code=500, detail=f"Internal server error")
+	except InvalidKeyError as error_msg:
+		await ft_printf(error_msg, ERROR)
+		raise HTTPException(status_code=400, detail=error_msg)
+	
+	except FileError as error_msg:
+		await ft_printf(error_msg, ERROR)
+		raise HTTPException(status_code=400, detail=error_msg)
+	
+	except KeySaveError as error_msg:
+		await ft_printf(error_msg, ERROR)
+		raise HTTPException(status_code=400, detail=error_msg)
+
+	except Exception as error_msg:
+		await ft_printf(f"/routes/import_keys/upload_file(): {error_msg}", ERROR)
+		raise HTTPException(status_code=500, detail="Internal server error")

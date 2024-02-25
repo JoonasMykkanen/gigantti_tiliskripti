@@ -6,12 +6,13 @@
 #    By: jmykkane <jmykkane@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/15 08:59:46 by jmykkane          #+#    #+#              #
-#    Updated: 2024/02/24 22:52:20 by jmykkane         ###   ########.fr        #
+#    Updated: 2024/02/25 11:10:49 by jmykkane         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Library imports
 from fastapi.responses import RedirectResponse
+from playwright.async_api import TimeoutError
 from fastapi.exceptions import HTTPException
 from pydantic import BaseModel
 from fastapi import APIRouter
@@ -44,6 +45,7 @@ async def handle_account(data: Data):
 	HTTP response with status and message:\n
 	201 Created\n
 	400 Bad request\n
+	404 Not found\n
 	500 Internal server error\n
 	"""
 	try:
@@ -52,14 +54,14 @@ async def handle_account(data: Data):
 		await create_account(data, key)
 
 	except NoKeyError as error_msg:
-		await ft_printf(error_msg, WARNING)
-		return RedirectResponse(url="/uploads")
+		await ft_printf(error_msg, ERROR)
+		return HTTPException(status_code=404, detail=error_msg)
 	
 	except EmailUsedError:
 		await ft_printf(f"User email {data.email} is already in use.", WARNING)
 		raise HTTPException(status_code=400, detail=error_msg)
 	
-	except ExternalTimeOutError as error_msg:
+	except TimeoutError as error_msg:
 		await ft_printf(f"External api timed out, check status for key: {key}", ERROR)
 		raise HTTPException(status_code=408, detail=error_msg)
 	

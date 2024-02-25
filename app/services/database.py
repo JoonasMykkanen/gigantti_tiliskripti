@@ -6,7 +6,7 @@
 #    By: jmykkane <jmykkane@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/16 07:54:05 by jmykkane          #+#    #+#              #
-#    Updated: 2024/02/24 22:53:16 by jmykkane         ###   ########.fr        #
+#    Updated: 2024/02/25 10:06:09 by jmykkane         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,6 @@ from ..db import *
 
 # ------------ PRODUCT KEY FUNCTIONS -------------- #
 
-# TODO: not urgent
 def delete_key(key):
 	"""
 

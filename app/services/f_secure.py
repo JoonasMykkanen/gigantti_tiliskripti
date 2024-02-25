@@ -6,7 +6,7 @@
 #    By: jmykkane <jmykkane@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/21 13:42:24 by jmykkane          #+#    #+#              #
-#    Updated: 2024/02/24 22:51:05 by jmykkane         ###   ########.fr        #
+#    Updated: 2024/02/25 11:27:16 by jmykkane         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,19 +15,33 @@ from playwright.async_api import async_playwright
 import asyncio
 
 # Custom imports
-from ..utils.constants import *
 from ..utils.logger import ft_printf
+from ..utils.constants import *
+from ..utils.errors import *
 
 async def catch_response(response, response_info):
 	request = response.request
-	if not RESPONSE_URL in response.url or request.method != POST:
-		return
+
+	if REGISTER_API in response.url and request.method == POST:
+		await response_info.put(response)
+	if AUTH_API in response.url:
+		await response_info.put(response)
+
+
+async def check_response(response, response_info):
+	if response.status == 200 and REGISTER_API in response.url:
+		body = await response.text()
+		if EMAIL_USED in body:
+			raise EmailUsedError()
 	
-	await response_info.put(response)
+	if response.status == 302:
+		auth_response = await response_info.get()
+		if auth_response.status == 200:
+			return
 
+	raise RuntimeError("Could not verify request status")
 
-async def check_response(response):
-	pass
+	
 
 
 async def create_account(data, key):
@@ -64,7 +78,11 @@ async def create_account(data, key):
 
 		# Waiting for page.on() call to load response to the Queue
 		response = await response_info.get()
-		await check_response(response)
+		await check_response(response, response_info)
+	
+	except asyncio.QueueEmpty as error_msg:
+		await ft_printf(error_msg, ERROR)
+		raise RuntimeError(error_msg)
 	
 	finally:
 		await page.close()

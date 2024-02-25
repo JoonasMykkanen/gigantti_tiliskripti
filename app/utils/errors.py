@@ -6,7 +6,7 @@
 #    By: jmykkane <jmykkane@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/24 16:44:35 by jmykkane          #+#    #+#              #
-#    Updated: 2024/02/24 22:53:13 by jmykkane         ###   ########.fr        #
+#    Updated: 2024/02/25 09:38:19 by jmykkane         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,5 +58,21 @@ class KeyGetError(Exception):
 class KeySaveError(Exception):
 	"""
 	Indicates that peewee had problems saving keys to the database
+	"""
+	pass
+
+
+
+class InvalidKeyError(Exception):
+	"""
+	Indicates that parser found invalid product key from input file
+	"""
+	pass
+
+
+
+class FileError(Exception):
+	"""
+	Indicates that parser could not find any keys from input file
 	"""
 	pass

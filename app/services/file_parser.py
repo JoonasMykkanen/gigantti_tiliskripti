@@ -6,7 +6,7 @@
 #    By: jmykkane <jmykkane@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/15 09:08:19 by jmykkane          #+#    #+#              #
-#    Updated: 2024/02/21 11:42:12 by jmykkane         ###   ########.fr        #
+#    Updated: 2024/02/25 09:58:25 by jmykkane         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ import re
 
 # Custom imports
 from ..utils.constants import *
+from ..utils.errors import *
 
 def validate_key(key):
 	"""
@@ -57,10 +58,16 @@ def parse_file(contents):
 			row += 1
 			cell_value = df.loc[row, col]
 			if not validate_key(EXCEL_PRODUCT_KEY):
-				raise ValueError(f"Invalid product_key found at row: {row} col: {col}")
+				raise InvalidKeyError()
 			list.append(cell_value)
+		
+		except InvalidKeyError:
+			raise InvalidKeyError(f"Invalid product_key found at row: {row} col: {col}")
 		
 		except Exception:
 			break
 	
-	return list
+	if list:
+		return list
+	else:
+		raise FileError("Zero (0) product keys found")
