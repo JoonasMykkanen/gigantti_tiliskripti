@@ -9,21 +9,25 @@ already_exists_playload = {
     "receipt": "1234567890"
 }
 
+bad_payload_1 = {
+    "wrong_field": "ville",
+    "another": "kalle",
+}
+
 @pytest.fixture(scope="module")
 def test_client():
     app = create_app()
     client = TestClient(app)
     return client
 
-@pytest.mark.asyncio
-async def test_create_account(test_client):
-    
-    # Make a POST request to the /create_account route
-    response = test_client.post("/create_account", json=already_exists_playload)
 
-    # Check that the status code of the response is 200 (OK)
+@pytest.mark.asyncio
+async def test_already_exists(test_client):
+    response = test_client.post("/create_account", json=already_exists_playload)
     assert response.status_code == 400
 
-    # Optionally, check other aspects of the response
-    # For example, if the response should include the created account's ID:
-    # assert "id" in response.json()
+
+@pytest.mark.asyncio
+async def test_bad_input(test_client):
+    response = test_client.post("/create_account", json=bad_payload_1)
+    assert response.status_code == 422

@@ -6,7 +6,7 @@
 #    By: jmykkane <jmykkane@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/15 07:56:40 by jmykkane          #+#    #+#              #
-#    Updated: 2024/02/25 16:30:36 by jmykkane         ###   ########.fr        #
+#    Updated: 2024/02/25 18:36:49 by jmykkane         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ INFO = 2
 WARNING = 3
 ERROR = 4
 CRITICAL = 5
+SUCCESS = 6
 
 # Colors
 WHITE = "\033[97m"

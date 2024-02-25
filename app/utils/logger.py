@@ -6,7 +6,7 @@
 #    By: jmykkane <jmykkane@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/16 08:03:13 by jmykkane          #+#    #+#              #
-#    Updated: 2024/02/24 22:44:49 by jmykkane         ###   ########.fr        #
+#    Updated: 2024/02/25 18:36:44 by jmykkane         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,8 @@ def get_color(level):
 		return RED
 	elif level == CRITICAL:
 		return MAGENTA
+	elif level == SUCCESS:
+		return GREEN
 	return ""
 		
 
