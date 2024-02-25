@@ -6,7 +6,7 @@
 #    By: jmykkane <jmykkane@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/15 08:59:46 by jmykkane          #+#    #+#              #
-#    Updated: 2024/02/25 18:37:21 by jmykkane         ###   ########.fr        #
+#    Updated: 2024/02/25 18:54:48 by jmykkane         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -71,5 +71,5 @@ async def handle_account(data: Data):
 		raise HTTPException(status_code=408, detail=error_msg)
 
 	except Exception as error_msg:
-		await ft_printf(f"500 Internal server error: Exception caught: {error_msg}", CRITICAL)
-		raise HTTPException(status_code=500, detail=error_msg)
+		await ft_printf(f"/routes/create_account/handle_account(): {error_msg}", CRITICAL)
+		raise HTTPException(status_code=500, detail="Internal Server Error")

@@ -6,7 +6,7 @@
 #    By: jmykkane <jmykkane@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/15 08:42:37 by jmykkane          #+#    #+#              #
-#    Updated: 2024/02/25 10:06:56 by jmykkane         ###   ########.fr        #
+#    Updated: 2024/02/25 18:55:05 by jmykkane         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,19 +45,20 @@ async def upload_file(file: UploadFile):
 		content = await file.read()
 		data = await parse_file(content)
 		save_keys(data)
+		await ft_printf(f"201 Created: {len(data)} keys saved to database")
 	
 	except InvalidKeyError as error_msg:
-		await ft_printf(error_msg, ERROR)
+		await ft_printf(f"400 Bad Request: {error_msg}", ERROR)
 		raise HTTPException(status_code=400, detail=error_msg)
 	
 	except FileError as error_msg:
-		await ft_printf(error_msg, ERROR)
+		await ft_printf(f"400 Bad Request: {error_msg}", ERROR)
 		raise HTTPException(status_code=400, detail=error_msg)
 	
 	except KeySaveError as error_msg:
-		await ft_printf(error_msg, ERROR)
+		await ft_printf(f"400 Bad Request: {error_msg}", ERROR)
 		raise HTTPException(status_code=400, detail=error_msg)
 
 	except Exception as error_msg:
 		await ft_printf(f"/routes/import_keys/upload_file(): {error_msg}", ERROR)
-		raise HTTPException(status_code=500, detail="Internal server error")
+		raise HTTPException(status_code=500, detail="Internal Server Error")

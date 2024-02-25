@@ -6,11 +6,10 @@
 #    By: jmykkane <jmykkane@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/15 17:33:58 by jmykkane          #+#    #+#              #
-#    Updated: 2024/02/18 12:59:28 by jmykkane         ###   ########.fr        #
+#    Updated: 2024/02/25 22:06:51 by jmykkane         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-import pytest
 from fastapi.testclient import TestClient
 from app import create_app  # replace with the actual location of your FastAPI app
 import io
