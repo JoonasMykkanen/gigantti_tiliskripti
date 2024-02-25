@@ -6,7 +6,7 @@
 #    By: jmykkane <jmykkane@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/21 13:42:24 by jmykkane          #+#    #+#              #
-#    Updated: 2024/02/25 11:27:16 by jmykkane         ###   ########.fr        #
+#    Updated: 2024/02/25 12:24:24 by jmykkane         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,15 +28,29 @@ async def catch_response(response, response_info):
 		await response_info.put(response)
 
 
+# TODO: Add checks for "key already used
+#		get_registration_url? request can be used here
 async def check_response(response, response_info):
+	"""
+	Checks caught responses from the server and compares status codes and contents
+	to determine wheter register was succesful or not
+
+	Parameters:
+	response ():
+	response_info ():
+
+	Returns:
+	None if succeeds, otherwise raises error
+	"""
 	if response.status == 200 and REGISTER_API in response.url:
 		body = await response.text()
 		if EMAIL_USED in body:
 			raise EmailUsedError()
 	
+	
 	if response.status == 302:
 		auth_response = await response_info.get()
-		if auth_response.status == 200:
+		if auth_response.status == 200 and AUTH_API in response.url:
 			return
 
 	raise RuntimeError("Could not verify request status")
@@ -55,13 +69,16 @@ async def create_account(data, key):
 	Returns:
 	None: Will raise exception if error occurred
 	"""
+	p = None
+	page = None
+	browser = None
 	try:
 		# Setting up page and drivers
 		response_info = asyncio.Queue()
 		p = await async_playwright().start()
 		browser = await p.chromium.launch(headless=False)
-		browser.set_default_timeout(10000)
 		page = await browser.new_page()
+		page.set_default_timeout(10000)
 		page.on('response', lambda response: asyncio.create_task(catch_response(response, response_info)))
 
 		# Navigating to page and setting up iframe it is using
@@ -85,7 +102,10 @@ async def create_account(data, key):
 		raise RuntimeError(error_msg)
 	
 	finally:
-		await page.close()
-		await browser.close()
-		await p.stop()
+		if page:
+			await page.close()
+		if browser:
+			await browser.close()
+		if p:
+			await p.stop()
 		

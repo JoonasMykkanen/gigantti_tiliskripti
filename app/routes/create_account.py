@@ -6,7 +6,7 @@
 #    By: jmykkane <jmykkane@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/15 08:59:46 by jmykkane          #+#    #+#              #
-#    Updated: 2024/02/25 11:10:49 by jmykkane         ###   ########.fr        #
+#    Updated: 2024/02/25 12:25:14 by jmykkane         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,9 +49,11 @@ async def handle_account(data: Data):
 	500 Internal server error\n
 	"""
 	try:
-		key = await get_product_key()
-		await ft_printf(str(key), INFO)
-		await create_account(data, key)
+		# key = await get_product_key()
+		# await ft_printf(str(key), INFO)
+		# await create_account(data, key)
+		# TODO: remove below line
+		await create_account(data, 1)
 
 	except NoKeyError as error_msg:
 		await ft_printf(error_msg, ERROR)
@@ -59,12 +61,13 @@ async def handle_account(data: Data):
 	
 	except EmailUsedError:
 		await ft_printf(f"User email {data.email} is already in use.", WARNING)
-		raise HTTPException(status_code=400, detail=error_msg)
+		raise HTTPException(status_code=400, detail=f"User email {data.email} is already in use.")
 	
 	except TimeoutError as error_msg:
-		await ft_printf(f"External api timed out, check status for key: {key}", ERROR)
+		# TODO: replace "1" with "key"
+		await ft_printf(f"External api timed out, check status for key: {1}", ERROR)
 		raise HTTPException(status_code=408, detail=error_msg)
 	
 	except Exception as error_msg:
-		ft_printf(f"Exception caught: {error_msg}", CRITICAL)
+		await ft_printf(f"Exception caught: {error_msg}", CRITICAL)
 		raise HTTPException(status_code=500, detail=error_msg)

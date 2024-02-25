@@ -6,7 +6,7 @@
 #    By: jmykkane <jmykkane@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/16 07:54:05 by jmykkane          #+#    #+#              #
-#    Updated: 2024/02/25 10:06:09 by jmykkane         ###   ########.fr        #
+#    Updated: 2024/02/25 11:56:11 by jmykkane         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -85,7 +85,7 @@ def get_product_key():
 		entry = Keys.get()
 		return entry
 	except Keys.DoesNotExist:
-		raise NoKeyError(f"No keys found in database: {e}")
+		raise NoKeyError(f"No keys found in database")
 	except Exception as e:
 		raise RuntimeError(f"/services/database.py/get_product_key(): {e}")
 	

@@ -5,18 +5,17 @@ import pytest
 app = create_app()
 client = TestClient(app)
 
+already_exists_playload = {
+    "first_name": "John",
+    "last_name": "Doe",
+    "email": "tester123987@gmail.com",
+    "receipt": "1234567890"
+}
+
 @pytest.mark.asyncio
 async def test_create_account():
-    # Define a sample payload based on the Data model
-    payload = {
-        "first_name": "John",
-        "last_name": "Doe",
-        "email": "tester123987@gmail.com",
-        "receipt": "1234567890"
-    }
-
     # Make a POST request to the /create_account route
-    response = client.post("/create_account", json=payload)
+    response = client.post("/create_account", json=already_exists_playload)
     
     print(response)
 
