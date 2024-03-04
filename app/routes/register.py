@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    create_account.py                                  :+:      :+:    :+:    #
+#    register.py                                        :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: jmykkane <jmykkane@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/15 08:59:46 by jmykkane          #+#    #+#              #
-#    Updated: 2024/02/25 18:54:48 by jmykkane         ###   ########.fr        #
+#    Updated: 2024/03/04 22:12:02 by jmykkane         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,10 +31,13 @@ class Data(BaseModel):
 	last_name: str
 	email: str
 	receipt: str
+	
+	send_email: bool
+	send_print: bool
 
 router = APIRouter()
 
-@router.post("/create_account", status_code=200)
+@router.post("/register", status_code=201)
 async def handle_account(data: Data):
 	"""
 	Takes form from the frontend and uses information to create new account
@@ -59,15 +62,14 @@ async def handle_account(data: Data):
 		await create_account(data, 1)
 		await ft_printf("201 Created - Account created succesfully", SUCCESS)
 		# await delete_key(key)
-		
 
 	except EmailUsedError:
 		await ft_printf(f"400 Bad Request: User email {data.email} is already in use.", WARNING)
 		raise HTTPException(status_code=400, detail=f"User email {data.email} is already in use.")
 	
 	except UsedKeyError as error_msg:
-		await ft_printf("Found already used key, redirecting to try again", WARNING)
 		# await delete_key(key)
+		await ft_printf("307 Temporary redirect - Key already used, trying again...", WARNING)
 		return RedirectResponse("/create_account")
 	
 	except NoKeyError as error_msg:
@@ -79,7 +81,6 @@ async def handle_account(data: Data):
 		await ft_printf(f"408 TimedOut: External api timed out, check status for key: {1}", ERROR)
 		raise HTTPException(status_code=408, detail=error_msg)
 
-
 	except Exception as error_msg:
-		await ft_printf(f"/routes/create_account/handle_account(): {error_msg}", CRITICAL)
+		await ft_printf(f"500 internal server error: /routes/register/handle_account(): {error_msg}", CRITICAL)
 		raise HTTPException(status_code=500, detail="Internal Server Error")

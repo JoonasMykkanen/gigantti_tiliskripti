@@ -6,7 +6,7 @@
 #    By: jmykkane <jmykkane@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/21 13:42:24 by jmykkane          #+#    #+#              #
-#    Updated: 2024/02/28 13:23:21 by jmykkane         ###   ########.fr        #
+#    Updated: 2024/03/04 22:10:35 by jmykkane         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,17 +21,16 @@ from ..utils.constants import *
 from ..utils.errors import *
 
 async def catch_response(response, response_info):
-	request = response.request
-
-	if REGISTER_API in response.url and request.method == POST:
-		print("register")
+	# REGISTER SUCCESS
+	if REGISTER_API in response.url:
 		await response_info.put(response)
+	# EMAIL ALREADY IN USE
 	elif AUTH_API in response.url:
-		print("auth api")
 		await response_info.put(response)
+	# INVALID PRODUCT KEY
 	elif COUPON_URL in response.url:
-		print("coupon found")
 		await response_info.put(response)
+
 
 
 # TODO: Add checks for "key already used
@@ -48,27 +47,27 @@ async def check_response(response, response_info):
 	Returns:
 	None if succeeds, otherwise raises error
 	"""
-	if response.status == 200 and REGISTER_API in response.url:
+	# REGISTER SUCCESS
+	if REGISTER_API in response.url:
+		return
+	
+	# EMAIL ALREADY IN USE
+	elif AUTH_API in response.url:
+		print("check: register")
 		body = await response.text()
 		if EMAIL_USED in body:
 			raise EmailUsedError()
 	
-
-	if COUPON_URL in response.url:
+	# INVALID PRODUCT KEY
+	elif COUPON_URL in response.url:
+		print("check: coupon")
 		body = await response.text()
 		if INVALID_COUPON in body:
-			raise UsedKeyError()
-	
-	
-	if response.status == 302:
-		auth_response = await response_info.get()
-		if auth_response.status == 200 and AUTH_API in response.url:
-			return
+			raise UsedKeyError()		
 
 	raise RuntimeError("Could not verify request status")
 
 	
-
 
 async def create_account(data, key):
 	"""
@@ -79,24 +78,21 @@ async def create_account(data, key):
 	key (str): string containing product key from database\n
 
 	Returns:
-	None: Will raise exception if error occurred
+	int: Will raise exception if error occurred
 	"""
 	browser = None
 	page = None
 	p = None
 
 	try:
-		# Setting up page and drivers
 		response_info = asyncio.Queue()
 		p = await async_playwright().start()
 		browser = await p.chromium.launch(headless=False)
 		page = await browser.new_page()
-		page.set_default_timeout(10000)
+		page.set_default_timeout(TIMEOUT)
 		page.on("response", lambda response: asyncio.create_task(catch_response(response, response_info)))
 
-		# Navigating to page and setting up iframe it is using
-		# await page.goto('https://my.f-secure.com/register/', wait_until="networkidle")
-		await page.goto("https://my.f-secure.com/register/gigantti/OJMMH-PQFWP-SZSKJ-EXAMP", wait_until="networkidle")
+		await page.goto('https://my.f-secure.com/register/', wait_until="networkidle")
 		await page.click('button[data-js-accept-all="false"]')
 		frame = page.frame_locator(".dynamic-iframe")
 		
@@ -110,7 +106,7 @@ async def create_account(data, key):
 		# Waiting for page.on() call to load response to the Queue
 		response = await response_info.get()
 		await check_response(response, response_info)
-	
+		
 	except asyncio.QueueEmpty as error_msg:
 		await ft_printf(error_msg, ERROR)
 		raise RuntimeError(error_msg)

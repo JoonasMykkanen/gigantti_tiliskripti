@@ -6,7 +6,7 @@
 #    By: jmykkane <jmykkane@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/15 07:56:40 by jmykkane          #+#    #+#              #
-#    Updated: 2024/02/25 18:36:49 by jmykkane         ###   ########.fr        #
+#    Updated: 2024/03/04 21:49:43 by jmykkane         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,6 +44,7 @@ REGISTER_URL = "https://my.f-secure.com/register/gigantti/"
 EMAIL_USED = "This email address is already in use."
 COUPON_URL = "https://api.my.f-secure.com/get_registration_url?promotionKey=gigantti&couponCode="
 INVALID_COUPON = "invalid_coupon"
+TIMEOUT = 10000
 
 
 # GENERAL
