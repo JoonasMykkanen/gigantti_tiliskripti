@@ -6,12 +6,13 @@
 #    By: jmykkane <jmykkane@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/21 13:42:24 by jmykkane          #+#    #+#              #
-#    Updated: 2024/02/25 12:24:24 by jmykkane         ###   ########.fr        #
+#    Updated: 2024/02/28 13:23:21 by jmykkane         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Library imports
 from playwright.async_api import async_playwright
+from playwright.async_api import TimeoutError
 import asyncio
 
 # Custom imports
@@ -23,8 +24,13 @@ async def catch_response(response, response_info):
 	request = response.request
 
 	if REGISTER_API in response.url and request.method == POST:
+		print("register")
 		await response_info.put(response)
-	if AUTH_API in response.url:
+	elif AUTH_API in response.url:
+		print("auth api")
+		await response_info.put(response)
+	elif COUPON_URL in response.url:
+		print("coupon found")
 		await response_info.put(response)
 
 
@@ -46,6 +52,12 @@ async def check_response(response, response_info):
 		body = await response.text()
 		if EMAIL_USED in body:
 			raise EmailUsedError()
+	
+
+	if COUPON_URL in response.url:
+		body = await response.text()
+		if INVALID_COUPON in body:
+			raise UsedKeyError()
 	
 	
 	if response.status == 302:
@@ -69,9 +81,10 @@ async def create_account(data, key):
 	Returns:
 	None: Will raise exception if error occurred
 	"""
-	p = None
-	page = None
 	browser = None
+	page = None
+	p = None
+
 	try:
 		# Setting up page and drivers
 		response_info = asyncio.Queue()
@@ -79,10 +92,11 @@ async def create_account(data, key):
 		browser = await p.chromium.launch(headless=False)
 		page = await browser.new_page()
 		page.set_default_timeout(10000)
-		page.on('response', lambda response: asyncio.create_task(catch_response(response, response_info)))
+		page.on("response", lambda response: asyncio.create_task(catch_response(response, response_info)))
 
 		# Navigating to page and setting up iframe it is using
-		await page.goto('https://my.f-secure.com/register/', wait_until="networkidle")
+		# await page.goto('https://my.f-secure.com/register/', wait_until="networkidle")
+		await page.goto("https://my.f-secure.com/register/gigantti/OJMMH-PQFWP-SZSKJ-EXAMP", wait_until="networkidle")
 		await page.click('button[data-js-accept-all="false"]')
 		frame = page.frame_locator(".dynamic-iframe")
 		
@@ -100,7 +114,11 @@ async def create_account(data, key):
 	except asyncio.QueueEmpty as error_msg:
 		await ft_printf(error_msg, ERROR)
 		raise RuntimeError(error_msg)
-	
+
+	except TimeoutError as error_msg:
+		response = await response_info.get()
+		await check_response(response, response_info)
+
 	finally:
 		if page:
 			await page.close()

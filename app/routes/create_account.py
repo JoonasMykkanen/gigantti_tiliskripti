@@ -11,6 +11,7 @@
 # **************************************************************************** #
 
 # Library imports
+from fastapi.responses import RedirectResponse
 from playwright.async_api import TimeoutError
 from fastapi.exceptions import HTTPException
 from pydantic import BaseModel
@@ -19,6 +20,7 @@ from fastapi import APIRouter
 # Custom imports
 from ..services.database import get_product_key
 from ..services.f_secure import create_account
+from ..services.database import delete_key
 from ..utils.logger import ft_printf
 from ..utils.constants import *
 from ..utils.errors import *
@@ -56,10 +58,17 @@ async def handle_account(data: Data):
 		# TODO: remove below line
 		await create_account(data, 1)
 		await ft_printf("201 Created - Account created succesfully", SUCCESS)
+		# await delete_key(key)
+		
 
 	except EmailUsedError:
 		await ft_printf(f"400 Bad Request: User email {data.email} is already in use.", WARNING)
 		raise HTTPException(status_code=400, detail=f"User email {data.email} is already in use.")
+	
+	except UsedKeyError as error_msg:
+		await ft_printf("Found already used key, redirecting to try again", WARNING)
+		# await delete_key(key)
+		return RedirectResponse("/create_account")
 	
 	except NoKeyError as error_msg:
 		await ft_printf(f"404 Not Found: {error_msg}", ERROR)
@@ -69,6 +78,7 @@ async def handle_account(data: Data):
 		# TODO: replace "1" with "key"
 		await ft_printf(f"408 TimedOut: External api timed out, check status for key: {1}", ERROR)
 		raise HTTPException(status_code=408, detail=error_msg)
+
 
 	except Exception as error_msg:
 		await ft_printf(f"/routes/create_account/handle_account(): {error_msg}", CRITICAL)

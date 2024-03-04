@@ -3,3 +3,5 @@ database.db
 .env
 .DS_Store
 /app/.DS_Store
+/.pytest_cache
+/old

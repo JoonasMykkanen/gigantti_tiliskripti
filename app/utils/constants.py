@@ -37,11 +37,13 @@ MAGENTA = "\033[95m"
 CYAN = "\033[96m"
 RESET = "\033[0m"
 
-# /services/create_account
+# /services/f-secure
 REGISTER_API = "https://accounts-emea.f-secure.com/OneID/portal/ui/register"
 AUTH_API = "https://api.my.f-secure.com/auth/check-oneid/"
 REGISTER_URL = "https://my.f-secure.com/register/gigantti/"
 EMAIL_USED = "This email address is already in use."
+COUPON_URL = "https://api.my.f-secure.com/get_registration_url?promotionKey=gigantti&couponCode="
+INVALID_COUPON = "invalid_coupon"
 
 
 # GENERAL
