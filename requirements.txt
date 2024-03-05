@@ -9,3 +9,4 @@ peewee
 pandas
 pytest
 pytz
+pdfrw

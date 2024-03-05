@@ -6,7 +6,7 @@
 #    By: jmykkane <jmykkane@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/15 08:59:46 by jmykkane          #+#    #+#              #
-#    Updated: 2024/03/04 22:12:02 by jmykkane         ###   ########.fr        #
+#    Updated: 2024/03/05 14:25:18 by jmykkane         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,6 +62,10 @@ async def handle_account(data: Data):
 		await create_account(data, 1)
 		await ft_printf("201 Created - Account created succesfully", SUCCESS)
 		# await delete_key(key)
+		if data.send_email:
+			pass
+		if data.send_print:
+			pass
 
 	except EmailUsedError:
 		await ft_printf(f"400 Bad Request: User email {data.email} is already in use.", WARNING)
