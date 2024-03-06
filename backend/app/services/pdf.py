@@ -6,7 +6,7 @@
 #    By: jmykkane <jmykkane@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/05 12:32:18 by jmykkane          #+#    #+#              #
-#    Updated: 2024/03/05 18:47:54 by jmykkane         ###   ########.fr        #
+#    Updated: 2024/03/06 11:33:26 by jmykkane         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,7 @@ def create_pdf(data):
 		fields = reader.pages[0]["/annots"]
 
 		# email field
-		fields[7].update(PdfDict(V=data.email))
+		fields[8].update(PdfDict(V=data.email))
 		# password field
 		fields[9].update(PdfDict(V=f"Eg{data.receipt}"))
 		# check box
@@ -45,6 +45,7 @@ def create_pdf(data):
 		filename = f"/output/{data.receipt}.pdf"
 		writer.write(filename, reader)
 	
+	# TODO: more specific error handling
 	except Exception as error_msg:
 		ft_printf(f"500 Internal server error: {error_msg}", CRITICAL)
 		# TODO: Raise some appropriate error

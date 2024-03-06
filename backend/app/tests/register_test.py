@@ -31,17 +31,15 @@ def test_client():
     client = TestClient(app)
     return client
 
+@pytest.mark.asyncio
+async def test_already_exists(test_client):
+    response = test_client.post("/register", json=already_exists_playload)
+    assert response.status_code == 400
 
-# @pytest.mark.asyncio
-# async def test_already_exists(test_client):
-#     response = test_client.post("/register", json=already_exists_playload)
-#     assert response.status_code == 400
-
-
-# @pytest.mark.asyncio
-# async def test_bad_input(test_client):
-#     response = test_client.post("/register", json=bad_payload_1)
-#     assert response.status_code == 422
+@pytest.mark.asyncio
+async def test_bad_input(test_client):
+    response = test_client.post("/register", json=bad_payload_1)
+    assert response.status_code == 422
     
 @pytest.mark.asyncio
 async def test_valid(test_client):

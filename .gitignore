@@ -1,7 +1,8 @@
-/test/test.xlsx
-database.db
-.env
+/backend/test/test.xlsx
+/backenddatabase.db
+/backend.env
+/backend/.DS_Store
 .DS_Store
-/app/.DS_Store
-/.pytest_cache
+/backend/app/.DS_Store
+/backend/.pytest_cache
 /old
