@@ -1,0 +1,6 @@
+/test/test.xlsx
+/backenddatabase.db
+.env
+.DS_Store
+/app/.DS_Store
+/.pytest_cache
