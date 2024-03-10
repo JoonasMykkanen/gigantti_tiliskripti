@@ -6,7 +6,7 @@
 /*   By: jmykkane <jmykkane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 13:13:37 by jmykkane          #+#    #+#             */
-/*   Updated: 2024/03/10 15:20:57 by jmykkane         ###   ########.fr       */
+/*   Updated: 2024/03/10 15:44:53 by jmykkane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,26 @@ import {
 } from "@nextui-org/react"
 
 const customLabel = {
-  label: 'group-data-[filled-within=true]:-translate-y-[calc(160%)] \
+  label: 'group-data-[filled-within=true]:-translate-y-[calc(165%)] \
           group-data-[filled-within=true]:-left-[2px] \
-          text-lg'
+          group-data-[filled-within=true]:text-base\
+          text-xl'
+}
+
+const InputField = ( {label, type, customClass }) => {
+  return (
+    <>
+      <Input
+        style={{ fontFamily: "sans-serif", fontSize: '18px' }}
+        classNames={customLabel}
+        className={customClass}
+        labelPlacement="outside"
+        variant="bordered"
+        label={label}
+        type={type}
+      />
+    </>
+  )
 }
 
 const Form = () => {
@@ -47,48 +64,20 @@ const Form = () => {
           <Divider/>
           <CardBody>
             <div className="w-full flex justify-between">
-              <Input
-                style={{ fontFamily: "sans-serif", fontSize: '20px' }}
-                classNames={customLabel}
-                labelPlacement="outside"
-                className="w-1/2 pr-2"
-                variant="bordered"
-                label="ETUNIMI"
-                type="text"
-              />
-              <Input
-                style={{ fontFamily: "sans-serif", fontSize: '20px' }}
-                classNames={customLabel}
-                labelPlacement="outside"
-                className="w-1/2 pl-2"
-                variant="bordered"
-                label="SUKUNIMI"
-                type="text"
-              />
+              <InputField label="ETUNIMI" type="text" customClass="w-1/2 pr-2"/>
+              <InputField label="SUKUNIMI" type="text" customClass="w-1/2 pl-2"/>
             </div>
-            <Input
-              style={{ fontFamily: "sans-serif", fontSize: '20px' }}
-              classNames={customLabel}
-              labelPlacement="outside"
-              variant="bordered"
-              label="EMAIL"
-              type="email"
-            />
-            <Input
-              style={{ fontFamily: "sans-serif", fontSize: '20px' }}
-              classNames={customLabel}
-              labelPlacement="outside"
-              variant="bordered"
-              label="KUITTI NRO"
-              type="text"
-            />
+            <InputField label="SÄHKÖPOSTI" type="email" />
+            <InputField label="KUITTI NUMERO" type="text" />
           </CardBody>
           <Divider/>
+
           <CardFooter className="justify-center p-4">
             <Button className="SubmitButton w-full" size="xl" color="secondary">
-              <h1 className="text-xl">REIKISTERÖI</h1>
+              <h1 className="text-2xl">REIKISTERÖI</h1>
             </Button>
           </CardFooter>
+          
         </Card>
       </form>
     </div>
