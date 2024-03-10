@@ -6,7 +6,7 @@
 /*   By: jmykkane <jmykkane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 13:13:37 by jmykkane          #+#    #+#             */
-/*   Updated: 2024/03/10 15:44:53 by jmykkane         ###   ########.fr       */
+/*   Updated: 2024/03/10 20:38:58 by jmykkane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ import {
   CardBody,
   CardFooter,
   Divider,
-  Link,
   Button,
 } from "@nextui-org/react"
 
@@ -31,7 +30,7 @@ const customLabel = {
           text-xl'
 }
 
-const InputField = ( {label, type, customClass }) => {
+const InputField = ({ label, type, customClass }) => {
   return (
     <>
       <Input
@@ -48,21 +47,18 @@ const InputField = ( {label, type, customClass }) => {
 }
 
 const Form = () => {
-  // const payload = {}
-
   return (
     <div className="h-full relative flex justify-center py-4">
       <form className="h-full mt-4">
         <Card className="w-[500px] h-3/4">
+          
           <CardHeader className="flex justify-center p-4">
-            <img
-              src={f_logo}
-              width={250}
-              alt="f-secure logo"
-            />
+            <img src={f_logo} width={250} alt="f-secure logo"/>
           </CardHeader>
+          
           <Divider/>
-          <CardBody>
+
+          <CardBody className="gap-2">
             <div className="w-full flex justify-between">
               <InputField label="ETUNIMI" type="text" customClass="w-1/2 pr-2"/>
               <InputField label="SUKUNIMI" type="text" customClass="w-1/2 pl-2"/>
@@ -70,10 +66,11 @@ const Form = () => {
             <InputField label="SÄHKÖPOSTI" type="email" />
             <InputField label="KUITTI NUMERO" type="text" />
           </CardBody>
+
           <Divider/>
 
           <CardFooter className="justify-center p-4">
-            <Button className="SubmitButton w-full" size="xl" color="secondary">
+            <Button className="SubmitButton w-full" size="xl" color="primary">
               <h1 className="text-2xl">REIKISTERÖI</h1>
             </Button>
           </CardFooter>

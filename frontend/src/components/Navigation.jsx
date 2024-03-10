@@ -38,19 +38,19 @@ const Navigation = () => {
         <NavbarContent className="gap-4 h-full w-full" justify="center">
 
           <NavbarItem>
-            <Button className="NavButton" as={Link} color="secondary" size="lg" variant="shadow" href="/">
+            <Button className="NavButton" as={Link} color="primary" size="lg" variant="shadow" href="/">
               <h1 className="text-xl">UUSI ASIAKAS</h1>
             </Button>
           </NavbarItem>
 
           <NavbarItem>
-            <Button className="NavButton" as={Link} color="secondary" size="lg" variant="shadow" href="/history">
+            <Button className="NavButton" as={Link} color="primary" size="lg" variant="shadow" href="/history">
               <h1 className="text-xl">HISTORIA</h1>
             </Button>
           </NavbarItem>
 
           <NavbarItem>
-            <Button className="NavButton" as={Link} color="secondary" size="lg" variant="shadow" href="/upload">
+            <Button className="NavButton" as={Link} color="primary" size="lg" variant="shadow" href="/upload">
               <h1 className="text-xl">TUO AVAIMIA</h1>
             </Button>
           </NavbarItem>
