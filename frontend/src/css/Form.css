@@ -25,3 +25,7 @@
 .SubmitButton:hover::before {
   opacity: 1;
 }
+
+[data-slot='input-wrapper'] {
+  border-radius: 0px 12px 0px 12px !important;
+}
