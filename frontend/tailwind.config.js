@@ -8,19 +8,23 @@ export default {
     "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        'elkjop': ['elkjop', 'sans-serif']
+      }
+    },
   },
   plugins: [
     nextui({
       themes: {
         light: {
           colors: {
-            'primary': '#1C2C72'
+            'primary': '#00007B'
           }
         },
         dark: {
           colors: {
-            'primary': '#1C2C72'
+            'primary': '#00007B'
           }
         }
       }

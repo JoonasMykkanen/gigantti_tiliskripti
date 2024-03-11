@@ -1,4 +1,5 @@
 .NavButton {
+  padding-top: 4px;
   color: white;
   border-radius: 20px;
   font-size: 20px;
@@ -22,10 +23,33 @@
   opacity: 0;
 }
 
+.NavButton.gradient::before {
+  opacity: 1;
+}
+
 .NavButton:hover::before {
   opacity: 1;
 }
 
-.NavButton:hover {
+.NavButton:hover,
+.NavButton.gradient:hover {
   transform: scale(1.1);
+}
+
+.hamburger-react {
+  position: relative !important;
+  top: -14px !important;
+  left: -4px !important;
+  width: 30px !important;
+  height: 24px !important;
+}
+
+.NavButton .History {
+  transition: transform 0.5s linear;
+  transform: rotate(0deg);
+}
+
+.NavButton:hover .History {
+  transition: transform 5s linear;
+  transform: rotate(-360deg);
 }
