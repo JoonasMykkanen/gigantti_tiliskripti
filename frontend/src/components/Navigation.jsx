@@ -66,6 +66,7 @@ const Navigation = () => {
               </DropdownTrigger>
             </NavbarItem>
             <DropdownMenu
+              aria-label="current"
               className="w-[300px]"
               itemClasses={{
                 base: "gap-4",

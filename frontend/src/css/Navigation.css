@@ -45,11 +45,11 @@
 }
 
 .NavButton .History {
-  transition: transform 0.5s linear;
+  transition: transform 0.2s linear;
   transform: rotate(0deg);
 }
 
 .NavButton:hover .History {
-  transition: transform 5s linear;
-  transform: rotate(-360deg);
+  transition: transform 0.2s linear;
+  transform: rotate(-30deg);
 }

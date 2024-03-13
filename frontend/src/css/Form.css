@@ -26,6 +26,7 @@
   opacity: 1;
 }
 
+.inputBox,
 [data-slot='input-wrapper'] {
   border-radius: 0px 12px 0px 12px !important;
 }

@@ -19,12 +19,14 @@ export default {
       themes: {
         light: {
           colors: {
-            'primary': '#00007B'
+            'primary': '#00007B',
+            'secondary': '#94C020'
           }
         },
         dark: {
           colors: {
-            'primary': '#00007B'
+            'primary': '#00007B',
+            'secondary': '#94C020'
           }
         }
       }
