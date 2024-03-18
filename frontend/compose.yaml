@@ -11,8 +11,12 @@ services:
   server:
     build:
       context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./:/react-docker:delegated
+      - /node_modules
     environment:
-      NODE_ENV: production
+      - CHOKIDAR_USEPOLLING=true
     ports:
       - 5173:5173
 

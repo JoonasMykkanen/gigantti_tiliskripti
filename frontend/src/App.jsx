@@ -14,7 +14,6 @@ import Navigation from "./components/Navigation"
 import Background from "./components/Background"
 import Form from "./components/Form"
 
-// TODO: Logic to not have forms at start but after a selection from menu
 function App() {
   return (
     <div className="w-screen h-screen overflow-hidden font-elkjop">
