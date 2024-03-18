@@ -8,7 +8,7 @@ Having worked at Giganti for years, and after starting my CS studies, I found a 
 
 Idea is simple, instead of manually generating product key, going to registering protals and entering informations and then filling out forms to provide for customer, this script will do it all at once.
 
-With provided idea, when deployed to all nordic stores, this script could save six or even seven figures per annum.
+With provided idea, when deployed to all nordic stores, this script could save six or even seven figures per annum in wage expenses.
 
 But first of all, it is not being deployed anywhere as of now, sadly. 
 
