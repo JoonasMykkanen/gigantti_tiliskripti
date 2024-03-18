@@ -12,8 +12,8 @@ With provided idea, when deployed to all nordic stores, this script could save s
 
 But first of all, it is not being deployed anywhere as of now, sadly. 
 
-Point is that even with just 5-8 minutes per usage, assuming hourly pay is 15€, the saving is merely 1,25€ - 2,00€. As with all automation, it is profitable when you scale it.
-Elkjop / Elgigantten / Gigantti has almost 400 stores all around nordics and this application could be used as many times as needed per day per store anywhere, anytime.
+Point is that even with just 5-8 minutes work time saved per usage, assuming hourly pay is 15€, the saving is merely 1,25€ - 2,00€ per run. As with all automation, it is profitable when you scale it.
+Elkjop / Elgigantten / Gigantti has almost 400 stores all around nordics and this application could be used as many times as needed per day per store anywhere, anytime. 
 
 ## Installation
 
@@ -32,6 +32,7 @@ http://localhost:5173/
 ### General:
 - Running locally to make security that much easier
 - Not saving ANY customer information to make GDPR simple
+- Gigantti themed UI with compatible fonts, logos and style
 
 ### Frontend:
 - React as main frontend framework
