@@ -21,6 +21,13 @@ Elkjop / Elgigantten / Gigantti has almost 400 stores all around nordics and thi
 ```
 cd frontend && docker compose up --build
 ```
+### Or manually
+```
+cd frontend && npm install && npm run dev
+```
+
+
+## Usage
 
 ### Access in browser:
 ```
