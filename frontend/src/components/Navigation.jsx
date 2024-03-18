@@ -37,12 +37,15 @@ const Navigation = () => {
 
   return (
     <>
-      <Image
-        className="fixed"
-        alt="Gigantti logo"
-        width={150}
-        src={g_logo}
-      />
+      <a className="logo-link" href="https://www.gigantti.fi/">
+        <Image
+          className="fixed"
+          alt="Gigantti logo"
+          width={150}
+          src={g_logo}
+        />
+      </a>
+    
 
       <Navbar isBordered={false} isBlurred={false} height="5rem" className="bg-transparent">
         <NavbarContent className="gap-4 h-full w-full" justify="center">

@@ -53,3 +53,8 @@
   transition: transform 0.2s linear;
   transform: rotate(-30deg);
 }
+
+.logo-link:hover img {
+  transform: scale(1.2);
+  transition: transform 0.2s ease-in-out;
+}
