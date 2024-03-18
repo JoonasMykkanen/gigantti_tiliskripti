@@ -13,4 +13,12 @@ export default defineConfig({
       plugins: [tailwindcss()],
     }
   },
+  build: {
+    assetsInlineLimit: 0,
+    rollupOptions: {
+      output: {
+        manualChunks: undefined,
+      },
+    },
+  },
 })
