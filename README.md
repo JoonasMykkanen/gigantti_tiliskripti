@@ -1,7 +1,6 @@
-# [LIVE DEMO](https://gigantti-tiliskripti-4hxhmincj-joonasmykkanen.vercel.app/)
-# <TILISKRIPTI>
+# <TILISKRIPTI> [LIVE DEMO](https://gigantti-tiliskripti-4hxhmincj-joonasmykkanen.vercel.app/)
 
-# NOTE: It is not possible to test backend functionality since it needs company resources that are not with this repo for obvious reasons. It's up for showcasing implementation as well as showcasing the frontend.
+### NOTE: It is not possible to test backend functionality since it needs company resources that are not with this repo for obvious reasons. It's up for showcasing implementation as well as showcasing the frontend.
 
 ## Description
 
