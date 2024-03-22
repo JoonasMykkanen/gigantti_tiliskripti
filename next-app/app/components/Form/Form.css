@@ -1,0 +1,32 @@
+.SubmitButton {
+  color: white;
+  border-radius: 15px;
+  font-size: 20px;
+  cursor: pointer;
+  transition: transform 0.3s cubic-bezier(0,.99,.55,.89);
+  position: relative;
+  overflow: hidden;
+}
+
+.SubmitButton::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  
+  background: linear-gradient(45deg, #006E47, #97C21E);
+  z-index: -1;
+  transition: opacity 0.2s ease-out;
+  opacity: 0;
+}
+
+.SubmitButton:hover::before {
+  opacity: 1;
+}
+
+.inputBox,
+[data-slot='input-wrapper'] {
+  border-radius: 0px 12px 0px 12px !important;
+}

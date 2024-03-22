@@ -6,7 +6,7 @@
 #    By: jmykkane <jmykkane@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/15 07:49:07 by jmykkane          #+#    #+#              #
-#    Updated: 2024/03/04 21:35:40 by jmykkane         ###   ########.fr        #
+#    Updated: 2024/03/22 05:14:33 by jmykkane         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ from fastapi import FastAPI
 # Custom imports
 from app.exception_handler import validation_exception_handler
 from app.middleware import logger_middleware
-from app.routes import register
+from app.routes import register_fsec
 from app.routes import import_keys
 from app.utils.constants import *
 from app.routes import index
@@ -52,7 +52,7 @@ def create_app():
 
 	# Specifying individual endpoints
 	app.include_router(index.router)
-	app.include_router(register.router)
+	app.include_router(register_fsec.router)
 	app.include_router(import_keys.router)
 
 	return app

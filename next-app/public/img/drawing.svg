@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="1920"
+   height="1080"
+   viewBox="0 0 1920 1080"
+   version="1.1"
+   id="svg1"
+   sodipodi:docname="drawing.svg"
+   inkscape:export-filename="background.svg"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96"
+   inkscape:version="1.3.2 (091e20e, 2023-11-25)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="px"
+     inkscape:zoom="0.55979287"
+     inkscape:cx="1254.9285"
+     inkscape:cy="439.44826"
+     inkscape:window-width="2560"
+     inkscape:window-height="1387"
+     inkscape:window-x="1512"
+     inkscape:window-y="328"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs1" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <ellipse
+       style="fill:#000080;stroke:#000000;stroke-width:1.66946"
+       id="path1"
+       cx="-100.00002"
+       cy="-99.999985"
+       rx="499.16525"
+       ry="499.16528" />
+    <circle
+       style="fill:#000080;stroke:#000000;stroke-width:0.918202"
+       id="path1-1"
+       cx="87.947289"
+       cy="1002.4211"
+       r="274.54089" />
+    <path
+       style="fill:#000080;stroke:#000000;stroke-width:1.05827"
+       d="m 1145.0664,1209.3759 c 0,0 0.571,-232.12611 153.6283,-276.88814 189.3557,-55.37763 280.4967,3.1796 364.4205,-67.88225 55.5115,-47.00396 56.6582,-396.9481 119.687,-448.38013 156.2893,-127.53326 203.6468,-46.44575 203.6468,-46.44575 l 541.2717,605.58113 -264.3835,396.57524 -1052.1749,130.4054 z"
+       id="path3"
+       sodipodi:nodetypes="csssccccc" />
+  </g>
+</svg>

@@ -6,11 +6,9 @@
 /*   By: jmykkane <jmykkane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 15:23:05 by jmykkane          #+#    #+#             */
-/*   Updated: 2024/03/09 13:45:36 by jmykkane         ###   ########.fr       */
+/*   Updated: 2024/03/22 06:35:41 by jmykkane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-import image from '../assets/img/background.svg'
 
 const Background = () => {
   return (
@@ -22,7 +20,7 @@ const Background = () => {
       top: "0",
       zIndex: "-1",
       
-      backgroundImage: `url(${image})`,
+      backgroundImage: `url(/img/background.svg)`,
       backgroundRepeat: "no-repeat",
       backgroundPosition: "center",
       backgroundSize: "100% 100%"

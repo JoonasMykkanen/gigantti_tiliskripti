@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    register.py                                        :+:      :+:    :+:    #
+#    register-fsec.py                                   :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: jmykkane <jmykkane@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/15 08:59:46 by jmykkane          #+#    #+#              #
-#    Updated: 2024/03/06 11:34:44 by jmykkane         ###   ########.fr        #
+#    Updated: 2024/03/22 05:13:52 by jmykkane         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,7 @@ class Data(BaseModel):
 
 router = APIRouter()
 
-@router.post("/register", status_code=201)
+@router.post("/register-fsec", status_code=201)
 async def handle_account(data: Data):
 	"""
 	Takes form from the frontend and uses information to create new account
