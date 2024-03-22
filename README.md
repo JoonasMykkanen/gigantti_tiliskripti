@@ -20,7 +20,7 @@ git clone https://github.com/JoonasMykkanen/gigantti_tiliskripti
 ```
 cd frontend && docker compose up --build
 ```
-### Or manually
+### Or manually ( requires npm & node installed on the machine )
 ```
 cd frontend && npm install && npm run dev
 ```
