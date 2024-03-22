@@ -6,11 +6,11 @@
 
 Having worked at Giganti for years, I found a perfect place for some nice automation that will make my day to day work easier.
 
-There are multiple different products that can be activated for the customer ensuring best possible experience. This can sometimes be time consuming and repetive, thus annoying for the employee and keeping the customer waiting. Depending on the situation, this can take up to 10 minutes per customer to handle and **this app can dial that down to under one minute, two at worst**.
+There are multiple different products that can be activated for the customer and thus ensuring best possible experience for them. This can sometimes be time consuming, repetive & annoying for the employee and keeping the customer waiting. Depending on the situation, this can take up to 10 minutes per customer to handle and this app can dial that down to **under one minute, two at worst**.
 
-With provided idea, when deployed to all nordic stores, this script could save six or even seven figures per annum in wage expenses, depending on how often it would be used.
+With provided idea, when deployed to all nordic stores, this app could save six or even seven figures per annum in wage expenses, depending on usage.
 
-But first of all, it is not being deployed anywhere as of now, sadly. But this brings me to my next point, To best of my ability, this app is being developed to be production ready and solid enough to be deployed if opporturiny arrives.
+But first of all, it is not being deployed anywhere as of now, sadly. But this brings me to my next goal, To best of my ability, this app is being developed to be production ready and solid enough to be deployed if opporturiny arrives.
 
 ## Installation
 ```
