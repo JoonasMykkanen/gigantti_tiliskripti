@@ -13,7 +13,6 @@ import {
   Button,
   CheckboxGroup,
   Checkbox,
-  Skeleton,
   Progress
 } from "@nextui-org/react";
 

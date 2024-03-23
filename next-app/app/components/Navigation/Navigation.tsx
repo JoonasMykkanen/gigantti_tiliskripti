@@ -3,7 +3,6 @@
 import './Navigation.css';
 
 import { Squash as Hamburger } from 'hamburger-react';
-import { useEffect } from 'react';
 import { useState } from "react";
 import React from "react";
 import {
@@ -22,6 +21,7 @@ import {
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [inMenu, setInMenu] = useState(false);
   const [animationBlocked, setAnimationBlocked] = useState(false);
 
   const handleClick = ( newStatus: boolean ) => {
@@ -34,7 +34,7 @@ const Navigation = () => {
   
   return (
     <>
-      <a className="logo-link" href="https://www.gigantti.fi/">
+      <a className="logo-link" href="/">
         <Image
           className="fixed"
           alt="Gigantti logo"
@@ -46,12 +46,19 @@ const Navigation = () => {
       <Navbar isBordered={false} isBlurred={false} height="5rem" className="bg-transparent">
         <NavbarContent className="gap-4 h-full w-full" justify="center">
           <Dropdown isOpen={isMenuOpen}>
-            
             <NavbarItem>
               <DropdownTrigger>
                 <Button
                   onClick={() => handleClick(!isMenuOpen)}
                   onMouseEnter={() => handleClick(true)}
+                  onMouseLeave={() => {
+                    setTimeout(() => {
+                      if (!inMenu && !animationBlocked) {
+                        handleClick(false);
+                        setInMenu(false);
+                      }
+                    }, 200)
+                  }}
                   className={`NavButton ${isMenuOpen ? 'gradient' : ''} pl-2 pr-4`}
                   variant="shadow"
                   color="primary"
@@ -63,31 +70,32 @@ const Navigation = () => {
                 </Button>
               </DropdownTrigger>
             </NavbarItem>
-            <DropdownMenu
-              aria-label="current"
-              itemClasses={{
-                base: "gap-4",
-                title: "text-lg font-elkjop text-black"
-              }}
-              onMouseLeave={() => handleClick(false)}
-            >
-            <DropdownItem key="f-secure" className="h-[50px]">
-              F-Secure
-            </DropdownItem>
-            
-            <DropdownItem key="mcafee" className="h-[50px]">
-              McAfee
-            </DropdownItem>
+              <DropdownMenu
+                onMouseEnter={() => setInMenu(true)}
+                onMouseLeave={() => { setInMenu(false); handleClick(false) }}
+                aria-label="current"
+                itemClasses={{
+                  base: "gap-4",
+                  title: "text-lg font-elkjop text-black"
+                }}
+              >
+              <DropdownItem key="f-secure" className="h-[50px]">
+                F-Secure
+              </DropdownItem>
+              
+              <DropdownItem key="mcafee" className="h-[50px]">
+                McAfee
+              </DropdownItem>
 
-            <DropdownItem key="cloud" className="h-[50px]">
-              Cloud
-            </DropdownItem>
+              <DropdownItem key="cloud" className="h-[50px]">
+                Cloud
+              </DropdownItem>
 
-            <DropdownItem key="e-learning" className="h-[50px]">
-              E-Learning
-            </DropdownItem>
-            
-            </DropdownMenu>
+              <DropdownItem key="e-learning" className="h-[50px]">
+                E-Learning
+              </DropdownItem>
+              
+              </DropdownMenu>
           </Dropdown>     
 
           <NavbarItem>
