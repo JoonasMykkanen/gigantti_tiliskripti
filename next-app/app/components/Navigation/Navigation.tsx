@@ -16,7 +16,11 @@ import {
   DropdownTrigger,
   DropdownMenu,
   DropdownItem,
-  NavbarMenuToggle,
+  
+  Modal,
+  ModalContent,
+  ModalBody,
+  ModalFooter,
 } from "@nextui-org/react";
 
 const Navigation = () => {
@@ -50,15 +54,6 @@ const Navigation = () => {
               <DropdownTrigger>
                 <Button
                   onClick={() => handleClick(!isMenuOpen)}
-                  onMouseEnter={() => handleClick(true)}
-                  onMouseLeave={() => {
-                    setTimeout(() => {
-                      if (!inMenu && !animationBlocked) {
-                        handleClick(false);
-                        setInMenu(false);
-                      }
-                    }, 200)
-                  }}
                   className={`NavButton ${isMenuOpen ? 'gradient' : ''} pl-2 pr-4`}
                   variant="shadow"
                   color="primary"
@@ -71,12 +66,11 @@ const Navigation = () => {
               </DropdownTrigger>
             </NavbarItem>
               <DropdownMenu
-                onMouseEnter={() => setInMenu(true)}
-                onMouseLeave={() => { setInMenu(false); handleClick(false) }}
+                onMouseLeave={() => handleClick(false) }
                 aria-label="current"
                 itemClasses={{
                   base: "gap-4",
-                  title: "text-lg font-elkjop text-black"
+                  title: "text-2xl font-elkjop text-black"
                 }}
               >
               <DropdownItem key="f-secure" className="h-[50px]">
