@@ -1,6 +1,6 @@
 import Navigation from "../components/Navigation/Navigation";
 import Background from "../components/Background/Background";
-import Form from "../components/Fsec/Fsec";
+import Form from "../components/Fsecure/Fsecure";
 
 export default function Home() {
   return (
