@@ -72,13 +72,20 @@ const Form = () => {
             <InputField label="SÄHKÖPOSTI" type="email" />
             <InputField label="KUITTI NUMERO" type="text" />
             
-            <div className="inputBox border-2 py-1 px-2 mt-6">
-              <h1 className="text-xl text-gray-500">Miten tiedot toimitetaan?</h1>
-              <CheckboxGroup color="secondary" >
-                <Divider className="w-[170px]"/>
-                <Checkbox value="mail" size="lg" classNames={{label: "text-gray-500"}}>SÄHKÖPOSTIIN</Checkbox>
-                <Checkbox value="pdf" size="lg" classNames={{label: "text-gray-500"}}>PAPERILLE</Checkbox>
-              </CheckboxGroup>
+            <div className="inputBox border-2 py-1 px-2 mt-6 flex flex-row justify-between">
+              <div className="">
+                <h1 className="text-xl text-gray-500">Miten tiedot toimitetaan?</h1>
+                <CheckboxGroup color="secondary" isRequired>
+                  <Divider className="w-[170px]"/>
+                  <Checkbox value="mail" size="lg" classNames={{label: "text-gray-500"}}>SÄHKÖPOSTIIN</Checkbox>
+                  <Checkbox value="pdf" size="lg" classNames={{label: "text-gray-500"}}>PAPERILLE</Checkbox>
+                </CheckboxGroup>
+              </div>
+              <div>
+                <h1 className="text-xl text-gray-500">Suorita ilman aktivointia?</h1>
+                <Divider className="w-[170px] mb-2"/>
+                <Checkbox color="secondary" value="activation" size="lg" classNames={{label: "text-gray-500"}}>KYLLÄ</Checkbox>
+              </div>
             </div>
 
             <div className="py-1 px-1 mt-2 mb-0">

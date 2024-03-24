@@ -1,8 +1,9 @@
 'use client'
 
+import Hamburger from './Hamburger';
 import './Navigation.css';
 
-import { Squash as Hamburger } from 'hamburger-react';
+
 import { useState } from "react";
 import React from "react";
 import {
@@ -16,17 +17,11 @@ import {
   DropdownTrigger,
   DropdownMenu,
   DropdownItem,
-  
-  Modal,
-  ModalContent,
-  ModalBody,
-  ModalFooter,
 } from "@nextui-org/react";
 
 const Navigation = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [inMenu, setInMenu] = useState(false);
   const [animationBlocked, setAnimationBlocked] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const handleClick = ( newStatus: boolean ) => {
     if (!animationBlocked) {
@@ -54,10 +49,10 @@ const Navigation = () => {
               <DropdownTrigger>
                 <Button
                   onClick={() => handleClick(!isMenuOpen)}
-                  className={`NavButton ${isMenuOpen ? 'gradient' : ''} pl-2 pr-4`}
+                  className={`NavButton ${isMenuOpen ? 'gradient' : ''} pl-2 pr-4 mt-2`}
                   variant="shadow"
                   color="primary"
-                  startContent={<Hamburger toggled={isMenuOpen} size={24}/>}
+                  startContent={<Hamburger status={isMenuOpen}/>}
                   size="lg"
                   href="/"
                 >
@@ -73,22 +68,13 @@ const Navigation = () => {
                   title: "text-2xl font-elkjop text-black"
                 }}
               >
-              <DropdownItem key="f-secure" className="h-[50px]">
-                F-Secure
-              </DropdownItem>
+                <DropdownItem key="f-secure" className="h-[50px]">
+                  F-Secure
+                </DropdownItem>
               
-              <DropdownItem key="mcafee" className="h-[50px]">
-                McAfee
-              </DropdownItem>
-
-              <DropdownItem key="cloud" className="h-[50px]">
-                Cloud
-              </DropdownItem>
-
-              <DropdownItem key="e-learning" className="h-[50px]">
-                E-Learning
-              </DropdownItem>
-              
+                <DropdownItem key="mcafee" className="h-[50px]">
+                  McAfee
+                </DropdownItem>
               </DropdownMenu>
           </Dropdown>     
 
