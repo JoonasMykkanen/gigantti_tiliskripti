@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import React from 'react';
-import './Form.css';
+import './Mcafee.css';
 import {
   Input,
   Card,
@@ -50,16 +50,16 @@ const InputField = ({ label, type, customClass }: InputProps ) => {
 }
 
 const Form = () => {
+  const [isSubmit, setIsSubmit] = useState(false)
   const [progress, setProgress] = useState(0)
-  const [isSubmit, setIsSubmit] = useState(0)
 
   return (
     <div className="h-full relative flex justify-center py-4">
-      <form className="h-full mt-4" onSubmit={() => setIsSubmit(1)}>
+      <form className="h-full mt-4" onSubmit={() => setIsSubmit(true)}>
         <Card className="w-[500px]">
           
           <CardHeader className="flex justify-center p-4">
-            <img src={'/img/f-secure.svg'} width={250} alt="f-secure logo"/>
+            <img src={'/img/mcafee.svg'} width={250} alt="f-secure logo"/>
           </CardHeader>
           
           <Divider/>
@@ -106,7 +106,7 @@ const Form = () => {
           <Divider/>
 
           <CardFooter className="justify-center p-4">
-            <Button className="SubmitButton w-full" size="md" color="primary" type="submit">
+            <Button className="SubmitButton w-full" size="md" color="primary" type='submit'>
               <h1 className="text-2xl">REIKISTERÖI</h1>
             </Button>
           </CardFooter>

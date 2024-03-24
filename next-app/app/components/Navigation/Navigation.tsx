@@ -19,7 +19,11 @@ import {
   DropdownItem,
 } from "@nextui-org/react";
 
-const Navigation = () => {
+type functionProp = {
+  func: (arg: string) => void;
+};
+
+const Navigation: React.FC<functionProp> = ({ func }) => {
   const [animationBlocked, setAnimationBlocked] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -62,13 +66,15 @@ const Navigation = () => {
             </NavbarItem>
               <DropdownMenu
                 onMouseLeave={() => handleClick(false) }
+                onSelect={(key) => func(key.toString())}
                 aria-label="current"
+                onAction={(key) => func(key.toString())}
                 itemClasses={{
                   base: "gap-4",
                   title: "text-2xl font-elkjop text-black"
                 }}
               >
-                <DropdownItem key="f-secure" className="h-[50px]">
+                <DropdownItem key="fsecure" className="h-[50px]">
                   F-Secure
                 </DropdownItem>
               

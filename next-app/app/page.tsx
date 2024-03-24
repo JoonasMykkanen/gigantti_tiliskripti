@@ -1,13 +1,30 @@
+'use client'
+
 import Navigation from "./components/Navigation/Navigation";
 import Background from "./components/Background/Background";
-import Form from "./components/Form/Form";
+import Mcafee from './components/Mcafee/Mcafee';
+import { useState } from "react";
+import Fsec from './components/Fsec/Fsec';
 
 export default function Home() {
+  const [pageContent, setPageContent] = useState('');
+
+  const renderContent = (): JSX.Element => {
+    switch (pageContent) {
+      case 'fsecure':
+        return <Fsec />
+      case 'mcafee':
+        return <Mcafee />
+      default:
+        return <></>
+    }
+  }
+
   return (
     <main className="w-screen h-screen overflow-hidden font-elkjop">
       <Background />
-      <Navigation />
-      <Form />
+      <Navigation func={setPageContent}/>
+      {renderContent()}
     </main>
   );
 }
