@@ -66,9 +66,11 @@ const Navigation: React.FC<functionProp> = ({ func }) => {
             </NavbarItem>
               <DropdownMenu
                 onMouseLeave={() => handleClick(false) }
-                onSelect={(key) => func(key.toString())}
+                onAction={(key) => {
+                  func(key.toString());
+                  handleClick(false);
+                }}
                 aria-label="current"
-                onAction={(key) => func(key.toString())}
                 itemClasses={{
                   base: "gap-4",
                   title: "text-2xl font-elkjop text-black"

@@ -1,10 +1,10 @@
 'use client'
 
 import Navigation from "./components/Navigation/Navigation";
-import Background from "./components/Background/Background";
+import Fsecure from './components/Fsecure/Fsecure';
+import Background from "./components/Background";
 import Mcafee from './components/Mcafee/Mcafee';
 import { useState } from "react";
-import Fsecure from './components/Fsecure/Fsecure';
 
 export default function Home() {
   const [pageContent, setPageContent] = useState('');
@@ -12,10 +12,13 @@ export default function Home() {
   /** Changes content based on navigation bar clicks */
   const renderContent = (): JSX.Element => {
     switch (pageContent) {
+      
       case 'fsecure':
         return <Fsecure />
+
       case 'mcafee':
         return <Mcafee />
+
       default:
         return <></>
     }
