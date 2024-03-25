@@ -20,10 +20,10 @@ import {
 } from "@nextui-org/react";
 
 type functionProp = {
-  func: (arg: string) => void;
+  setState: (setState: string) => void;
 };
 
-const Navigation: React.FC<functionProp> = ({ func }) => {
+const Navigation: React.FC<functionProp> = ({ setState }) => {
   const [animationBlocked, setAnimationBlocked] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -67,7 +67,7 @@ const Navigation: React.FC<functionProp> = ({ func }) => {
               <DropdownMenu
                 onMouseLeave={() => handleClick(false) }
                 onAction={(key) => {
-                  func(key.toString());
+                  setState(key.toString());
                   handleClick(false);
                 }}
                 aria-label="current"
@@ -88,17 +88,16 @@ const Navigation: React.FC<functionProp> = ({ func }) => {
 
           <NavbarItem>
             <Button
+              onClick={ () => setState('history') }
               startContent={<img
                               style={{ position: 'relative', right: '-6px', top: '-2px' }}
                               className="History h-[28px]"
                               src={'/img/history.svg'}
                             />}
               className="NavButton pl-2 pr-4"
-              as={Link}
+              variant="shadow"
               color="primary"
               size="lg"
-              variant="shadow"
-              href="/history"
             >
               <h1 className="text-xl">HISTORIA</h1>
             </Button>
@@ -106,16 +105,16 @@ const Navigation: React.FC<functionProp> = ({ func }) => {
 
           <NavbarItem>
             <Button
+              onClick={() => setState('upload')}
               startContent={<img
                 style={{ position: 'relative', right: '-6px', top: '-2px' }}
                 className="Upload h-[24px]"
                 src={'/img/upload.svg'}
               />}
               className="NavButton pl-2 pr-4"
-              as={Link} color="primary"
-              size="lg"
               variant="shadow"
-              href="/upload"
+              color="primary"
+              size="lg"
             >
               <h1 className="text-xl">TUO AVAIMIA</h1>
             </Button>

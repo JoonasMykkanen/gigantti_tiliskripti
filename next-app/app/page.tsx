@@ -1,10 +1,13 @@
 'use client'
 
-import Navigation from "./components/Navigation/Navigation";
+import Navigation from './components/Navigation/Navigation';
 import Fsecure from './components/Fsecure/Fsecure';
-import Background from "./components/Background";
+import Background from './components/Background';
 import Mcafee from './components/Mcafee/Mcafee';
+import History from './components/History';
+import Upload from './components/Upload';
 import { useState } from "react";
+
 
 export default function Home() {
   const [pageContent, setPageContent] = useState('');
@@ -14,20 +17,26 @@ export default function Home() {
     switch (pageContent) {
       
       case 'fsecure':
-        return <Fsecure />
+        return <Fsecure />;
 
       case 'mcafee':
-        return <Mcafee />
+        return <Mcafee />;
+
+      case 'upload':
+        return <Upload />;
+      
+      case 'history':
+        return <History />;
 
       default:
-        return <></>
+        return <></>;
     }
   }
 
   return (
     <main className="w-screen h-screen overflow-hidden font-elkjop">
       <Background />
-      <Navigation func={setPageContent}/>
+      <Navigation setState={setPageContent}/>
       {renderContent()}
     </main>
   );
