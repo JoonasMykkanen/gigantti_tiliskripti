@@ -6,7 +6,7 @@
 #    By: jmykkane <jmykkane@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/15 07:56:40 by jmykkane          #+#    #+#              #
-#    Updated: 2024/03/04 21:49:43 by jmykkane         ###   ########.fr        #
+#    Updated: 2024/03/26 16:28:58 by jmykkane         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,6 +48,6 @@ TIMEOUT = 10000
 
 
 # GENERAL
-FRONTEND = "http://localhost:9898"
+FRONTEND = "http://localhost:3000"
 POST = "POST"
 GET = "GET"

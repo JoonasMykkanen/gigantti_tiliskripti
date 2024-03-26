@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    register-fsec.py                                   :+:      :+:    :+:    #
+#    register_fsec.py                                   :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: jmykkane <jmykkane@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/15 08:59:46 by jmykkane          #+#    #+#              #
-#    Updated: 2024/03/22 05:13:52 by jmykkane         ###   ########.fr        #
+#    Updated: 2024/03/26 16:35:07 by jmykkane         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,11 +29,12 @@ from ..utils.errors import *
 class Data(BaseModel):
 	first_name: str
 	last_name: str
-	email: str
 	receipt: str
+	email: str
 	
 	send_email: bool
 	send_print: bool
+	dont_activate: bool
 
 router = APIRouter()
 
