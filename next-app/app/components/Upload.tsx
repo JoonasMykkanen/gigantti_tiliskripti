@@ -1,15 +1,33 @@
 import { Button } from "@nextui-org/react";
 import React, { useState } from "react";
 import Image from "next/image";
+import axios from "axios";
 
 const Upload = (): JSX.Element => {
   const [file, setFile] = useState<File | undefined>();
 
-  const handleSubmit = (event: React.SyntheticEvent) => {
+  /** Will send filedata to backend using axios */
+  const handleSubmit = async (event: React.SyntheticEvent) => {
     event.preventDefault();
-    console.log(event.target)
+    if (!file)
+      return;
+
+    try {
+      const formData = new FormData();
+      formData.append('file', file);
+      const response = await axios.post('http://localhost:8080/upload', formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        }
+      });
+      console.log(response);
+    }
+    catch (error) {
+      console.log(`Error: ${error}`);
+    }
   }
 
+  /** File handler, will set current state to file uploaded */
   const handleChange = (event: React.FormEvent<HTMLInputElement>) => {
     const target = event.target as HTMLInputElement & {
       files: FileList;
